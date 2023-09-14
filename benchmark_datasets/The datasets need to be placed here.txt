@@ -1,1 +1,3 @@
 The datasets need to be placed here.
+
+Download the zip file of the benchmark datasets found [here](https://drive.google.com/open?id=1H9Ep76l8KkUpwILY-13owsEMbVCYTmyx) and extract the folder to LPS_Net/benchmark_datasets.
