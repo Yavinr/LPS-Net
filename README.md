@@ -1,4 +1,4 @@
-# LPS-Net: Lightweight Parameter-Shared Network for Point Cloud-Based Place Recognition
+# LPS-Net: Lightweight Parameter-shared Network for Point Cloud-based Place Recognition
 
 Chengxin Liu, Guiyou Chen, Ran Song
 
