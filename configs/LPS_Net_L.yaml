@@ -1,0 +1,99 @@
+MANUAL_SEED: 123
+model: "models.LPS_Net"
+GROUP: 8
+NUM_POINTS: 4096
+train_opt_mode: 'gate'
+eval_opt_mode: 'gate'
+
+gate_conv: 512
+EdgeConv_bn: 'single'
+upsample_bn: 'single'
+dropout: 0.0
+if_froze: False
+load: False
+paras_file: 'configs/LPS_Net_L.params'
+froze:
+  - 'EdgeConv'
+  - 'attention'
+  - 'upsample'
+  - 'gate'
+
+#resume: 'log/conv_center_0/record_dicts/epoch00_checkpoint.pkl'
+
+n_FPS: [ 1024,256,64,16 ]
+n_kNN: [ 20,20,20,20 ]
+gp: [ 8,8,8,8 ]
+EdgeConv_mlp: [ [ 3, 32, 32, 64 ],
+                [ 64, 64, 64, 128 ],
+                [ 128, 128, 128, 256 ],
+                [ 256, 256, 256, 512 ] ]
+
+upsample_mlp: [ [ [ 259,256,256,256 ] ,[ 64,64,64 ] ],
+                [ [ 320,256,256 ] ,[ 64,64 ] ],
+                [ [ 384,256,256 ] ,[ 64,64 ] ],
+                [ [ 768,256,256 ] ,[ 128,64 ] ] ]
+
+
+
+VLAD_cluster: [ 64,16,4,1 ]
+#VLADNet_cluster_size: [ 1024,256,64,16 ]
+VLADNet_ipt_size: [ 4096,1024,256,64 ]
+opt_descriptor_dim: 256
+
+DATASET_FOLDER: "benchmark_datasets/"
+
+# TRAIN
+BATCH_NUM_QUERIES: 1
+TRAIN_POSITIVES_PER_QUERY: 2
+TRAIN_NEGATIVES_PER_QUERY: 14
+eval_batch_size: 20
+
+SAMPLED_NEG: 8000
+NUM_TO_TAKE: 10
+eval_step: 1400
+
+BASE_LEARNING_RATE: 0.0005
+MOMENTUM: 0.9
+OPTIMIZER: 'adam'
+MAX_EPOCH: 30
+
+LEARNING_RATE_DECAY: 'step'
+
+# the margin is too small
+MARGIN_1: 0.5
+MARGIN_2: 0.2
+
+# LOSS
+LOSS_FUNCTION: 'quadruplet'
+LOSS_LAZY: True
+TRIPLET_USE_BEST_POSITIVES: False
+LOSS_IGNORE_ZERO_BATCH: False
+
+#  ----------- switch data for evaluation ----------
+#EVAL_DATASET: 'oxford'
+EVAL_DATABASE_FILE: 'oxford_evaluation_database.pickle'
+EVAL_QUERY_FILE: 'oxford_evaluation_query.pickle'
+TRAIN_FILE: 'training_queries_baseline_v1.pickle'
+TEST_FILE: 'test_queries_baseline_v1.pickle'
+
+
+eval_database:
+  - 'oxford_evaluation_database.pickle'
+  - 'university_evaluation_database.pickle'
+  - 'residential_evaluation_database.pickle'
+  - 'business_evaluation_database.pickle'
+
+eval_query:
+  - 'oxford_evaluation_query.pickle'
+  - 'university_evaluation_query.pickle'
+  - 'residential_evaluation_query.pickle'
+  - 'business_evaluation_query.pickle'
+
+oxford_eval_database: 'dataldad/oxford_evaluation_database.pickle'
+oxford_eval_query: 'dataldad/oxford_evaluation_query.pickle'
+university_eval_database: 'dataldad/university_evaluation_database.pickle'
+university_eval_query: 'dataldad/university_evaluation_query.pickle'
+residential_eval_database: 'dataldad/residential_evaluation_database.pickle'
+residential_eval_query: 'dataldad/residential_evaluation_query.pickle'
+business_eval_database: 'dataldad/business_evaluation_database.pickle'
+business_eval_query: 'dataldad/business_evaluation_query.pickle'
