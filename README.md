@@ -13,7 +13,7 @@ We propose a lightweight parameter-shared network (LPS-Net), which includes mult
 ## Pre-requisites
 
 - Python 3.8
-- CUDA 1.8
+- CUDA 11.1
 - Pytorch 1.8.0
 - Numpy 1.19.5
 - Pandas 1.2.2
